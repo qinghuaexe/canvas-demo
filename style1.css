@@ -1,0 +1,27 @@
+#xxx{
+    background:#ddd;
+    display: block;
+}
+body{
+    margin: 0;
+    position: relative;
+}
+.actions{
+    position: absolute;
+    left: 500px;
+    bottom: 0;
+}
+.actionsx{
+    position: absolute;
+    left: 500px;
+    bottom: 0;
+}
+.actions > #brush{
+    display: none;
+}
+.actionsx > #brush{
+    display: inline-block;
+}
+.actionsx > #eraser{
+    display: none;
+}
