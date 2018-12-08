@@ -1,5 +1,6 @@
 var yyy = document.getElementById('xxx');
 var context = yyy.getContext('2d');
+var lineWidth = 5
 //设置画板尺寸//
 autosetCanvasSize(yyy)
 
@@ -7,18 +8,63 @@ autosetCanvasSize(yyy)
 listenToUser(yyy)
 //控制橡皮开关//
 var eraserEnable = false
-eraser.onclick = function () {
-    eraserEnable = true
-    actions.className = 'actionsx'
-}
-brush.onclick = function(){
+brush.onclick =function () {
     eraserEnable = false
-    actions.className = 'actions'
+    brush.classList.add('active') 
+    eraser.classList.remove('active')
+}
+//笔，橡皮切换
+eraser.onclick =function(){
+    eraserEnable = true
+    eraser.classList.add('active')
+    brush.classList.remove('active')
+}
+//画笔颜色
+red.onclick =function(){
+    context.fillStyle = 'red'
+    context.strokeStyle = 'red'
+    red.classList.add('active') 
+    green.classList.remove('active')
+    blue.classList.remove('active')
+}
+green.onclick =function(){
+    context.fillStyle = 'green'
+    context.strokeStyle = 'green'
+    red.classList.remove('active')
+    green.classList.add('active')
+    blue.classList.remove('active')
+}
+blue.onclick =function(){
+    context.fillStyle = 'blue'
+    context.strokeStyle = 'blue'
+    red.classList.remove('active')
+    green.classList.remove('active')
+    blue.classList.add('active')
+}
+//线粗
+thin.onclick =function(){
+    lineWidth = 3
+}
+thick.onclick =function(){
+    lineWidth = 7
+}
+//清除
+clear.onclick =function(){
+    context.clearRect(0,0,yyy.width,yyy.height)
+}
+//保存下载
+save.onclick =function(){
+    var url = yyy.toDataURL("image/png")
+    console.log(url)
+    var a = document.createElement('a')
+    document.body.appendChild(a)
+    a.href = url
+    a.download = 'xxxx'
+    a.click()
 }
 //画圆//
 function drawCircle(x,y,radius){
     context.beginPath();
-    context.fillStyle = 'black'
     context.arc(x,y,radius,0,Math.PI*2);
     context.fill()
 }
@@ -27,7 +73,7 @@ function drawLine(x1,y1,x2,y2){
     context.beginPath();
     context.fillStyle = 'black'
     context.moveTo(x1,y1)
-    context.lineWidth = 3
+    context.lineWidth = lineWidth
     context.lineTo(x2,y2)
     context.stroke()
 }
@@ -45,7 +91,7 @@ function autosetCanvasSize(canvas) {
         canvas.height = pageHeight
     }
 }
-//监听用户动作//
+//监听鼠标//
 function listenToUser(canvas) {
     var using = false
     var lastPoint = { x: undefined, y: undefined }

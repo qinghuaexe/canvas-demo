@@ -1,3 +1,5 @@
+ol,ul{list-style: none;}
+*{margin: 0; padding: 0;}
 #xxx{
     background:#ddd;
     display: block;
@@ -5,23 +7,69 @@
 body{
     margin: 0;
     position: relative;
+    overflow: hidden;
 }
 .actions{
     position: absolute;
     left: 0px;
-    bottom: 0;
+    top: 0;
+    padding: 20px;
 }
-.actionsx{
-    position: absolute;
-    left: 0px;
-    bottom: 0;
+.actions > svg{
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0 10px;
 }
-.actions > #brush{
-    display: none;
+ .icon {
+       width: 1em; height: 1em;
+       vertical-align: -0.15em;
+       fill: currentColor;
+       overflow: hidden;
 }
-.actionsx > #brush{
-    display: inline-block;
+.actions > svg.active{
+    fill: red;
+    transform: scale(1.2)  
+}    
+.color{
+    position: fixed;
+    top: 50px;
+    left: 28px;
+    
 }
-.actionsx > #eraser{
-    display: none;
+ol > li{
+    width: 20px;
+    height: 20px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+ol > li.red{
+    background: red;
+}
+ol > li.green{
+    background:green;
+}
+ol > li.blue{
+    background: blue;
+}
+.color >li.active{
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.95);
+    transform: scale(1.2);
+}
+.lineSize > li{
+    margin: 20px 0;
+}
+.lineSize{
+    position: fixed;
+    right: 10px;
+    top: 30px;
+}
+.lineSize > .thin{
+    height: 0;
+    width: 50px;
+    border-top: 3px solid black;
+}
+.lineSize > .thick{
+    height: 0;
+    width: 50px;
+    border-top: 5px solid black;
 }
